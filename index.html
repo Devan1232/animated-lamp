@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="theme-color" content="#000000"/>
+  <title>AI Ad Hustler</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      color: #333;
+    }
+    select, button {
+      padding: 10px;
+      font-size: 16px;
+      margin-top: 10px;
+      width: 90%;
+      max-width: 400px;
+    }
+    .output {
+      margin-top: 20px;
+      padding: 15px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    img {
+      max-width: 100%;
+      border-radius: 10px;
+    }
+    textarea {
+      width: 100%;
+      height: 120px;
+      margin-top: 10px;
+    }
+    a {
+      display: inline-block;
+      margin-top: 10px;
+      color: blue;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>🤖 AI Ad Hustler</h1>
+  <p>Select a category to generate your ad pack:</p>
+  <select id="category">
+    <option value="ai">AI Side Hustle Tools</option>
+    <option value="fitness">Fitness Planner</option>
+    <option value="digital">Printable Budget Tracker</option>
+  </select>
+  <br />
+  <button onclick="generateAd()">Generate Ad</button>
+
+  <div id="outputContainer"></div>
+
+  <script>
+    const adData = {
+      ai: {
+        image: "https://cdn.openai.com/chatgpt/ai_ad_sample.jpg",
+        text: `💡 Discover the top 5 AI tools to launch a side hustle in 2024! Make logos, write blogs, and automate your income.
+👉 Try them here: https://your-affiliate-link.com/ai-tools
+#aitools #sidehustle #passiveincome #hustlehard #makemoneyonline`
+      },
+      fitness: {
+        image: "https://cdn.openai.com/chatgpt/fitness_planner_sample.jpg",
+        text: `🔥 Stay on track with this all-in-one Fitness Planner!  
+✅ Meal logging  
+✅ Daily workouts  
+✅ Goal tracker  
+👉 Download it now: https://your-affiliate-link.com/fitness-planner
+#fitnessplanner #getfit #printables #selfcare #2024goals`
+      },
+      digital: {
+        image: "https://cdn.openai.com/chatgpt/budget_tracker_sample.jpg",
+        text: `📊 Master your money with this Printable Budget Tracker!  
+Track expenses, set savings goals, and finally get ahead.  
+👉 Get it instantly: https://your-affiliate-link.com/budget-tracker
+#budgeting #printableplanner #financialfreedom #etsyfinds`
+      }
+    };
+
+    function generateAd() {
+      const category = document.getElementById("category").value;
+      const data = adData[category];
+
+      const output = document.createElement("div");
+      output.className = "output";
+      output.innerHTML = `
+        <h2>📦 Ad Pack: ${category.toUpperCase()}</h2>
+        <img src="${data.image}" alt="Ad Image" />
+        <textarea readonly>${data.text}</textarea>
+        <a href="${data.image}" download>⬇️ Download Image</a><br />
+        <a href="data:text/plain;charset=utf-8,${encodeURIComponent(data.text)}" download="ad_text_${category}.txt">⬇️ Download Text</a>
+      `;
+
+      document.getElementById("outputContainer").appendChild(output);
+    }
+  </script>
+</body>
+</html>
